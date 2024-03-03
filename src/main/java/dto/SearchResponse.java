@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchResponse {
-    boolean isSuccess;
-    //Customers will be empty
-    List<Trip> potentialTrips;
+    boolean isSuccess = true;
+    List<FlightInfo> departureFlights;
+    List<FlightInfo> returnFlights;
 }
