@@ -19,24 +19,27 @@ public class SearchRequest {
     @JsonFormat(pattern="yyyy-MM-dd")
     Date returnDate;
     int numOfFlexibleDate;
-    int numOfStopover;
+    int numberOfStopover;//0 or 1
     boolean acceptFirstClass;
     boolean acceptEconomy;
 
     public SearchRequest(
             String departureAirport,
             String arrivalAirport,
+            int numberOfStopover,
             @JsonFormat(pattern="yyyy-MM-dd")
             Date departureDate
     ) {
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
+        this.numberOfStopover = numberOfStopover;
         this.departureDate = departureDate;
     }
 
     public SearchRequest(
             String departureAirport,
             String arrivalAirport,
+            int numberOfStopover,
             @JsonFormat(pattern="yyyy-MM-dd")
             Date departureDate,
             @JsonFormat(pattern="yyyy-MM-dd")
@@ -44,6 +47,7 @@ public class SearchRequest {
     ) {
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
+        this.numberOfStopover = numberOfStopover;
         this.departureDate = departureDate;
         this.returnDate = returnDate;
     }

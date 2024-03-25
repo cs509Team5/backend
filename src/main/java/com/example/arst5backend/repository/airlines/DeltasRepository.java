@@ -15,4 +15,14 @@ public interface DeltasRepository extends JpaRepository<Deltas, Long> {
             Timestamp MinDepartDateTime,
             Timestamp MaxDepartDateTime
     );
+    List<Deltas> findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+            String DepartAirport,
+            Timestamp MinDepartDateTime,
+            Timestamp MaxDepartDateTime
+            );
+    List<Deltas> findByArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+            String ArriveAirport,
+            Timestamp MinDepartDateTime,
+            Timestamp MaxDepartDateTime
+            );
 }

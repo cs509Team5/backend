@@ -1,6 +1,7 @@
 package com.example.arst5backend.controller;
 
 import com.example.arst5backend.service.SearchService;
+import com.example.arst5backend.service.SearchStrategy;
 import dto.FlightInfo;
 import dto.SearchRequest;
 import dto.SearchResponse;
@@ -15,27 +16,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/search")
 public class SearchFlight {
-    private final SearchService searchService;
+    private final SearchStrategy searchStrategy;
 
     @Autowired
-    public SearchFlight(SearchService searchService){
-        this.searchService = searchService;
+    public SearchFlight(SearchStrategy searchStrategy){
+        this.searchStrategy = searchStrategy;
     }
 
     @GetMapping
     public SearchResponse search(@RequestBody SearchRequest searchRequest) {
-        System.out.println(searchRequest);
-        List<FlightInfo> allDepartureFlights = searchService.searchFlights(
+        System.out.println("Search request: " + searchRequest);
+        List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
                 searchRequest.getDepartureAirport(),
                 searchRequest.getArrivalAirport(),
+                searchRequest.getNumberOfStopover(),
                 searchRequest.getDepartureDate()
         );
         SearchResponse searchResponse = new SearchResponse();
         searchResponse.setDepartureFlights(allDepartureFlights);
         if (searchRequest.getReturnDate() != null) {
-            List<FlightInfo> allReturnFlights = searchService.searchFlights(
+//            System.out.println("number of stopover: " + searchRequest.getNumberOfStopover());
+            List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
                     searchRequest.getArrivalAirport(),
                     searchRequest.getDepartureAirport(),
+                    searchRequest.getNumberOfStopover(),
                     searchRequest.getReturnDate()
             );
             searchResponse.setReturnFlights(allReturnFlights);

@@ -25,12 +25,43 @@ public class DeltasService {
             // Exclusive
             Timestamp MaxDepartDateTime
     ) {
-        System.out.println(DepartAirport);
-        System.out.println(ArriveAirport);
-        System.out.println(MinDepartDateTime);
-        System.out.println(MaxDepartDateTime);
+//        System.out.println(DepartAirport);
+//        System.out.println(ArriveAirport);
+//        System.out.println(MinDepartDateTime);
+//        System.out.println(MaxDepartDateTime);
         return deltasRepository.findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
                 DepartAirport,
+                ArriveAirport,
+                MinDepartDateTime,
+                MaxDepartDateTime
+        );
+    }
+
+    public List<Deltas> searchDeltas1(
+            String DepartAirport,
+            Timestamp MinDepartDateTime,
+            // Exclusive
+            Timestamp MaxDepartDateTime
+    ) {
+//        System.out.println(DepartAirport);
+//        System.out.println(MinDepartDateTime);
+//        System.out.println(MaxDepartDateTime);
+        return deltasRepository.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+                DepartAirport,
+                MinDepartDateTime,
+                MaxDepartDateTime
+        );
+    }
+    public List<Deltas> searchDeltas2(
+            String ArriveAirport,
+            Timestamp MinDepartDateTime,
+            // Exclusive
+            Timestamp MaxDepartDateTime
+    ) {
+//        System.out.println(ArriveAirport);
+//        System.out.println(MinDepartDateTime);
+//        System.out.println(MaxDepartDateTime);
+        return deltasRepository.findByArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
                 ArriveAirport,
                 MinDepartDateTime,
                 MaxDepartDateTime
