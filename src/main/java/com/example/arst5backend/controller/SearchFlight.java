@@ -1,5 +1,6 @@
 package com.example.arst5backend.controller;
 
+import com.example.arst5backend.model.airlines.FlightCapacity;
 import com.example.arst5backend.service.SearchService;
 import com.example.arst5backend.service.SearchStrategy;
 import dto.FlightInfo;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,24 +30,29 @@ public class SearchFlight {
     @GetMapping
     public SearchResponse search(@RequestBody SearchRequest searchRequest) {
         System.out.println("Search request: " + searchRequest);
-        List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
-                searchRequest.getDepartureAirport(),
-                searchRequest.getArrivalAirport(),
-                searchRequest.getNumberOfStopover(),
-                searchRequest.getDepartureDate()
-        );
-        SearchResponse searchResponse = new SearchResponse();
-        searchResponse.setDepartureFlights(allDepartureFlights);
-        if (searchRequest.getReturnDate() != null) {
-//            System.out.println("number of stopover: " + searchRequest.getNumberOfStopover());
-            List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
-                    searchRequest.getArrivalAirport(),
+
+            List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
                     searchRequest.getDepartureAirport(),
+                    searchRequest.getArrivalAirport(),
                     searchRequest.getNumberOfStopover(),
-                    searchRequest.getReturnDate()
+                    searchRequest.isAcceptEconomy(),
+                    searchRequest.isAcceptFirstClass(),
+                    searchRequest.getDepartureDate()
             );
-            searchResponse.setReturnFlights(allReturnFlights);
-        }
+            SearchResponse searchResponse = new SearchResponse();
+            searchResponse.setDepartureFlights(allDepartureFlights);
+            if (searchRequest.getReturnDate() != null) {
+    //            System.out.println("number of stopover: " + searchRequest.getNumberOfStopover());
+                List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
+                        searchRequest.getArrivalAirport(),
+                        searchRequest.getDepartureAirport(),
+                        searchRequest.getNumberOfStopover(),
+                        searchRequest.isAcceptEconomy(),
+                        searchRequest.isAcceptFirstClass(),
+                        searchRequest.getReturnDate()
+                );
+                searchResponse.setReturnFlights(allReturnFlights);
+            }
         return searchResponse;
     }
 }

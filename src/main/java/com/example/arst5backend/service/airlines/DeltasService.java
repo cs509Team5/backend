@@ -1,7 +1,9 @@
 package com.example.arst5backend.service.airlines;
 
 import com.example.arst5backend.model.airlines.Deltas;
+import com.example.arst5backend.model.airlines.FlightCapacity;
 import com.example.arst5backend.repository.airlines.DeltasRepository;
+import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +12,14 @@ import java.util.List;
 
 @Service
 public class DeltasService {
-    private final DeltasRepository deltasRepository;
+    private final DeltasReserveRepository deltasReserveRepository;
 
     @Autowired
-    public DeltasService(DeltasRepository deltasRepository) {
-        this.deltasRepository = deltasRepository;
+    public DeltasService(DeltasReserveRepository deltasReserveRepository) {
+        this.deltasReserveRepository = deltasReserveRepository;
     }
 
-    public List<Deltas> searchDeltas(
+    public List<FlightCapacity> searchDeltas(
             String DepartAirport,
             String ArriveAirport,
             // Inclusive
@@ -29,15 +31,15 @@ public class DeltasService {
 //        System.out.println(ArriveAirport);
 //        System.out.println(MinDepartDateTime);
 //        System.out.println(MaxDepartDateTime);
-        return deltasRepository.findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
-                DepartAirport,
-                ArriveAirport,
-                MinDepartDateTime,
-                MaxDepartDateTime
-        );
+            return deltasReserveRepository.findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+                    DepartAirport,
+                    ArriveAirport,
+                    MinDepartDateTime,
+                    MaxDepartDateTime
+            );
     }
 
-    public List<Deltas> searchDeltas1(
+    public List<FlightCapacity> searchDeltas1(
             String DepartAirport,
             Timestamp MinDepartDateTime,
             // Exclusive
@@ -46,13 +48,13 @@ public class DeltasService {
 //        System.out.println(DepartAirport);
 //        System.out.println(MinDepartDateTime);
 //        System.out.println(MaxDepartDateTime);
-        return deltasRepository.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+        return deltasReserveRepository.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
                 DepartAirport,
                 MinDepartDateTime,
                 MaxDepartDateTime
         );
     }
-    public List<Deltas> searchDeltas2(
+    public List<FlightCapacity> searchDeltas2(
             String ArriveAirport,
             Timestamp MinDepartDateTime,
             // Exclusive
@@ -61,7 +63,7 @@ public class DeltasService {
 //        System.out.println(ArriveAirport);
 //        System.out.println(MinDepartDateTime);
 //        System.out.println(MaxDepartDateTime);
-        return deltasRepository.findByArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+        return deltasReserveRepository.findByArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
                 ArriveAirport,
                 MinDepartDateTime,
                 MaxDepartDateTime

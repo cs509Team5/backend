@@ -2,6 +2,7 @@ package com.example.arst5backend.service;
 
 import com.example.arst5backend.model.Flight;
 import com.example.arst5backend.model.airlines.Deltas;
+import com.example.arst5backend.model.airlines.FlightCapacity;
 import com.example.arst5backend.service.airlines.DeltasService;
 import dto.FlightInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,11 +28,12 @@ public class SearchService {
         this.deltasService = deltasService;
     }
 
-    // Simple search flights service.
     public List<FlightInfo> searchFlights(
             String DepartAirport,
             String ArriveAirport,
             List<Integer> my_list,
+            Boolean AcceptEconomy,
+            Boolean AcceptFirstClass,
             Date DepartDate
     ) {
         List<FlightInfo> flights = new ArrayList<>();
@@ -39,20 +44,73 @@ public class SearchService {
             calendar.setTime(DepartDate);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
             Timestamp departure_max_timestamp = new Timestamp(calendar.getTimeInMillis());
-            List<Deltas> deltas = deltasService.searchDeltas(
+            List<FlightCapacity> flightResults = deltasService.searchDeltas(
                     DepartAirport,
                     ArriveAirport,
                     departure_min_timestamp,
                     departure_max_timestamp
             );
-            for (Deltas delta: deltas) {
+            for (FlightCapacity flightResult: flightResults) {
                 FlightInfo flight = new FlightInfo();
-                flight.setArriveairport(delta.getArriveairport());
-                flight.setDepartairport(delta.getDepartairport());
-                flight.setDepartdatetime(delta.getDepartdatetime());
-                flight.setArrivedatetime(delta.getArrivedatetime());
-                flight.setFlightnumber(delta.getFlightnumber());
-                flights.add(flight);
+                int economyclassnum= flightResult.getEconomyclassnum();
+                int firstclassnum= flightResult.getFirstclassnum();
+                if (AcceptEconomy == true && AcceptFirstClass == true) {
+                    if (economyclassnum > 0 && firstclassnum > 0) {
+                        flight.setSeatClass("Economy and first class options available");
+                        flight.setArriveairport(flightResult.getArriveairport());
+                        flight.setDepartairport(flightResult.getDepartairport());
+                        flight.setDepartdatetime(flightResult.getDepartdatetime());
+                        flight.setArrivedatetime(flightResult.getArrivedatetime());
+                        flight.setFlightnumber(flightResult.getFlightnumber());
+                        flight.setFlightType(flightResult.getFlighttype());
+                        flight.setIsLayover("Direct Flight");
+                        flights.add(flight);
+                    } else if (economyclassnum > 0 && firstclassnum == 0) {
+                        flight.setSeatClass("Only economy class available");
+                        flight.setArriveairport(flightResult.getArriveairport());
+                        flight.setDepartairport(flightResult.getDepartairport());
+                        flight.setDepartdatetime(flightResult.getDepartdatetime());
+                        flight.setArrivedatetime(flightResult.getArrivedatetime());
+                        flight.setFlightnumber(flightResult.getFlightnumber());
+                        flight.setFlightType(flightResult.getFlighttype());
+                        flight.setIsLayover("Direct Flight");
+                        flights.add(flight);
+                    } else if (economyclassnum == 0 && firstclassnum > 0) {
+                        flight.setSeatClass("Only first class available");
+                        flight.setArriveairport(flightResult.getArriveairport());
+                        flight.setDepartairport(flightResult.getDepartairport());
+                        flight.setDepartdatetime(flightResult.getDepartdatetime());
+                        flight.setArrivedatetime(flightResult.getArrivedatetime());
+                        flight.setFlightnumber(flightResult.getFlightnumber());
+                        flight.setFlightType(flightResult.getFlighttype());
+                        flight.setIsLayover("Direct Flight");
+                        flights.add(flight);
+                    }
+                } else if (AcceptEconomy == true && AcceptFirstClass == false) {
+                    if (economyclassnum>0) {
+                        flight.setSeatClass("Economy Class");
+                        flight.setArriveairport(flightResult.getArriveairport());
+                        flight.setDepartairport(flightResult.getDepartairport());
+                        flight.setDepartdatetime(flightResult.getDepartdatetime());
+                        flight.setArrivedatetime(flightResult.getArrivedatetime());
+                        flight.setFlightnumber(flightResult.getFlightnumber());
+                        flight.setFlightType(flightResult.getFlighttype());
+                        flight.setIsLayover("Direct Flight");
+                        flights.add(flight);
+                    }
+                } else if (AcceptEconomy == false && AcceptFirstClass == true) {
+                    if (firstclassnum>0) {
+                        flight.setSeatClass("First Class");
+                        flight.setArriveairport(flightResult.getArriveairport());
+                        flight.setDepartairport(flightResult.getDepartairport());
+                        flight.setDepartdatetime(flightResult.getDepartdatetime());
+                        flight.setArrivedatetime(flightResult.getArrivedatetime());
+                        flight.setFlightnumber(flightResult.getFlightnumber());
+                        flight.setFlightType(flightResult.getFlighttype());
+                        flight.setIsLayover("Direct Flight");
+                        flights.add(flight);
+                    }
+                }
             }
         }
 
@@ -62,66 +120,122 @@ public class SearchService {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(DepartDate);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
+            
             Timestamp departure_max_timestamp = new Timestamp(calendar.getTimeInMillis());
-            List<Deltas> deltas1 = deltasService.searchDeltas1(
+            List<FlightCapacity> flightResults1 = deltasService.searchDeltas1(
                     DepartAirport,
                     departure_min_timestamp,
                     departure_max_timestamp
             );
             //the second flight
-            //assume the minimum stopover time is 2 hours.
+            //assume the minimum stopover time is 45 min.
             //and the maximum stopover time is 24 hours.
-            calendar.add(Calendar.HOUR_OF_DAY, 2);
+            calendar.add(Calendar.MINUTE, 45);
             departure_min_timestamp = new Timestamp(calendar.getTimeInMillis());
-            calendar.add(Calendar.SECOND, 136200);//57000+22hrs, the longest flight duration is 57000
+            calendar.add(Calendar.SECOND, 140700);//57000+23hr+15min, the longest flight duration is 57000
             departure_max_timestamp = new Timestamp(calendar.getTimeInMillis());
-            List<Deltas> deltas2 = deltasService.searchDeltas2(
+            List<FlightCapacity> flightResults2 = deltasService.searchDeltas2(
                     ArriveAirport,
                     departure_min_timestamp,
                     departure_max_timestamp
             );
-//            List<FlightInfo> flights = new ArrayList<FlightInfo>();
-//            List<FlightInfo> flightInfoList = new ArrayList<>();
-            for (Deltas delta1: deltas1) {
-                Timestamp arriveTime = delta1.getArrivedatetime();
-                for (Deltas delta2: deltas2) {
-                    Timestamp departTime = delta2.getDepartdatetime();
-                    long milliseconds = departTime.getTime() - arriveTime.getTime();
-                    long seconds = milliseconds / 1000;
-                    if (delta1.getArriveairport().equals(delta2.getDepartairport()) && seconds >=7200 && seconds<= 86400 ) {
-                        FlightInfo flight1 = new FlightInfo();
-                        flight1.setArriveairport(delta1.getArriveairport());
-                        flight1.setDepartairport(delta1.getDepartairport());
-                        flight1.setDepartdatetime(delta1.getDepartdatetime());
-                        flight1.setArrivedatetime(delta1.getArrivedatetime());
-                        flight1.setFlightnumber(delta1.getFlightnumber());
-                        flights.add(flight1);
 
+            for (FlightCapacity flightResult1: flightResults1) {
+                Timestamp arriveTime1 = flightResult1.getArrivedatetime();
+                int economyclassnum1 = flightResult1.getEconomyclassnum();
+                int firstclassnum1 = flightResult1.getFirstclassnum();
+                for (FlightCapacity flightResult2: flightResults2) {
+                    int economyclassnum2 = flightResult2.getEconomyclassnum();
+                    int firstclassnum2 = flightResult2.getFirstclassnum();
+                    Timestamp departTime2 = flightResult2.getDepartdatetime();
+                    long milliseconds = departTime2.getTime() - arriveTime1.getTime();
+                    long seconds = milliseconds / 1000;
+                    if (flightResult1.getArriveairport().equals(flightResult2.getDepartairport()) && seconds >= 2700 && seconds<= 86400 ) {
+                        FlightInfo flight1 = new FlightInfo();
                         FlightInfo flight2 = new FlightInfo();
-                        flight2.setArriveairport(delta2.getArriveairport());
-                        flight2.setDepartairport(delta2.getDepartairport());
-                        flight2.setDepartdatetime(delta2.getDepartdatetime());
-                        flight2.setArrivedatetime(delta2.getArrivedatetime());
-                        flight2.setFlightnumber(delta2.getFlightnumber());
-                        flights.add(flight2);
+                        if (AcceptEconomy == true && AcceptFirstClass == true) {
+                            if ((economyclassnum1 > 0 || firstclassnum1 > 0) && (economyclassnum2 > 0 || firstclassnum2 > 0)) {
+                                flight1.setArriveairport(flightResult1.getArriveairport());
+                                flight1.setDepartairport(flightResult1.getDepartairport());
+                                flight1.setDepartdatetime(flightResult1.getDepartdatetime());
+                                flight1.setArrivedatetime(flightResult1.getArrivedatetime());
+                                flight1.setFlightnumber(flightResult1.getFlightnumber());
+                                if (economyclassnum1 > 0 && firstclassnum1 > 0) {
+                                    flight1.setSeatClass("Economy and first class options available");
+                                } else if (economyclassnum1 > 0 && firstclassnum1 == 0) {
+                                    flight1.setSeatClass("Only economy class available");
+                                } else if (economyclassnum1 == 0 && firstclassnum1 > 0) {
+                                    flight1.setSeatClass("Only first class available");
+                                }
+                                flight1.setFlightType(flightResult1.getFlighttype());
+                                flight1.setIsLayover("First Leg of a Connecting Flight");
+                                flights.add(flight1);
+
+                                flight2.setArriveairport(flightResult2.getArriveairport());
+                                flight2.setDepartairport(flightResult2.getDepartairport());
+                                flight2.setDepartdatetime(flightResult2.getDepartdatetime());
+                                flight2.setArrivedatetime(flightResult2.getArrivedatetime());
+                                flight2.setFlightnumber(flightResult2.getFlightnumber());
+                                if (economyclassnum2 > 0 && firstclassnum2 > 0) {
+                                    flight2.setSeatClass("Economy and first class options available");
+                                } else if (economyclassnum2 > 0 && firstclassnum2 == 0) {
+                                    flight2.setSeatClass("Only economy class available");
+                                } else if (economyclassnum2 == 0 && firstclassnum2 > 0) {
+                                    flight2.setSeatClass("Only first class available");
+                                }
+                                flight2.setFlightType(flightResult2.getFlighttype());
+                                flight2.setIsLayover("Second Leg of a Connecting Flight");
+                                flights.add(flight2);
+                            }
+                        } else if (AcceptEconomy == true && AcceptFirstClass == false) {
+                            if (economyclassnum1 > 0  && economyclassnum2 > 0 ) {
+                                flight1.setArriveairport(flightResult1.getArriveairport());
+                                flight1.setDepartairport(flightResult1.getDepartairport());
+                                flight1.setDepartdatetime(flightResult1.getDepartdatetime());
+                                flight1.setArrivedatetime(flightResult1.getArrivedatetime());
+                                flight1.setFlightnumber(flightResult1.getFlightnumber());
+                                flight1.setSeatClass("Economy Class");
+                                flight1.setFlightType(flightResult1.getFlighttype());
+                                flight1.setIsLayover("First Leg of a Connecting Flight");
+                                flights.add(flight1);
+
+                                flight2.setArriveairport(flightResult2.getArriveairport());
+                                flight2.setDepartairport(flightResult2.getDepartairport());
+                                flight2.setDepartdatetime(flightResult2.getDepartdatetime());
+                                flight2.setArrivedatetime(flightResult2.getArrivedatetime());
+                                flight2.setFlightnumber(flightResult2.getFlightnumber());
+                                flight2.setSeatClass("Economy Class");
+                                flight2.setFlightType(flightResult2.getFlighttype());
+                                flight2.setIsLayover("Second Leg of a Connecting Flight");
+                                flights.add(flight2);
+                            }
+                        } else if (AcceptEconomy == false && AcceptFirstClass == true) {
+                            if (firstclassnum1 > 0  && firstclassnum2 > 0 ) {
+                                flight1.setArriveairport(flightResult1.getArriveairport());
+                                flight1.setDepartairport(flightResult1.getDepartairport());
+                                flight1.setDepartdatetime(flightResult1.getDepartdatetime());
+                                flight1.setArrivedatetime(flightResult1.getArrivedatetime());
+                                flight1.setFlightnumber(flightResult1.getFlightnumber());
+                                flight1.setSeatClass("First Class");
+                                flight1.setFlightType(flightResult1.getFlighttype());
+                                flight1.setIsLayover("First Leg of a Connecting Flight");
+                                flights.add(flight1);
+
+                                flight2.setArriveairport(flightResult2.getArriveairport());
+                                flight2.setDepartairport(flightResult2.getDepartairport());
+                                flight2.setDepartdatetime(flightResult2.getDepartdatetime());
+                                flight2.setArrivedatetime(flightResult2.getArrivedatetime());
+                                flight2.setFlightnumber(flightResult2.getFlightnumber());
+                                flight2.setSeatClass("First Class");
+                                flight2.setFlightType(flightResult2.getFlighttype());
+                                flight2.setIsLayover("Second Leg of a Connecting Flight");
+                                flights.add(flight2);
+                            }
+                        }
                     }
                 }
             }
         }
-        return flights;
-    }
-
-    // TODO: More complex search flights service.
-    public List<FlightInfo> searchFlights(
-            String DepartAirport,
-            String ArriveAirport,
-            Date DepartDate,
-            int NumberOfFlexibleDate,
-            int NumberOfStopOver,
-            Boolean AcceptFirstClass,
-            Boolean AcceptEconomy
-    ) {
-        List<FlightInfo> flights = new ArrayList<>();
         return flights;
     }
 }
