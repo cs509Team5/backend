@@ -18,4 +18,7 @@ public class FlightInfo {
     String departairport;
     String arriveairport;
     String flightnumber;
+    String seatClass;
+    String flightType;
+    String isLayover;
 }

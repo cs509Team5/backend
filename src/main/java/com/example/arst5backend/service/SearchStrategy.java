@@ -17,15 +17,17 @@ public class SearchStrategy {
     String DepartAirport,
     String ArriveAirport,
     int numberOfStopover,
+    boolean AcceptEconomy,
+    boolean AcceptFirstClass,
     Date DepartDate
     ) {
-        List<FlightInfo> flights = new ArrayList<>();
+        List<FlightInfo> flights;
         List<Integer> my_list = new ArrayList<>(Arrays.asList(0, 0));
         if (numberOfStopover == 0) {
-            flights = searchService.searchFlights(DepartAirport, ArriveAirport, my_list, DepartDate);
+            flights = searchService.searchFlights(DepartAirport, ArriveAirport, my_list, AcceptEconomy, AcceptFirstClass, DepartDate);
         } else {
             my_list.set(1, 1);
-            flights = searchService.searchFlights(DepartAirport, ArriveAirport, my_list, DepartDate);
+            flights = searchService.searchFlights(DepartAirport, ArriveAirport, my_list, AcceptEconomy, AcceptFirstClass, DepartDate);
         }
         return flights;
     }

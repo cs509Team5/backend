@@ -14,6 +14,7 @@ import java.sql.Date;
 public class SearchRequest {
     String departureAirport;
     String arrivalAirport;
+    String flightNumber;
     @JsonFormat(pattern="yyyy-MM-dd")
     Date departureDate;
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -27,12 +28,16 @@ public class SearchRequest {
             String departureAirport,
             String arrivalAirport,
             int numberOfStopover,
+            boolean acceptEconomy,
+            boolean acceptFirstClass,
             @JsonFormat(pattern="yyyy-MM-dd")
             Date departureDate
     ) {
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
         this.numberOfStopover = numberOfStopover;
+        this.acceptEconomy = acceptEconomy;
+        this.acceptFirstClass = acceptFirstClass;
         this.departureDate = departureDate;
     }
 
@@ -40,6 +45,8 @@ public class SearchRequest {
             String departureAirport,
             String arrivalAirport,
             int numberOfStopover,
+            boolean acceptEconomy,
+            boolean acceptFirstClass,
             @JsonFormat(pattern="yyyy-MM-dd")
             Date departureDate,
             @JsonFormat(pattern="yyyy-MM-dd")
@@ -48,7 +55,11 @@ public class SearchRequest {
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
         this.numberOfStopover = numberOfStopover;
+        this.acceptEconomy = acceptEconomy;
+        this.acceptFirstClass = acceptFirstClass;
         this.departureDate = departureDate;
         this.returnDate = returnDate;
     }
+    // t
+
 }
