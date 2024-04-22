@@ -13,11 +13,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FlightInfo {
-    Timestamp departdatetime;
-    Timestamp arrivedatetime;
-    String departairport;
-    String arriveairport;
-    String flightnumber;
+    Timestamp departDatetime;
+    Timestamp arriveDatetime;
+    String departAirport;
+    String arriveAirport;
+    String flightNumber;
     String seatClass;
     String flightType;
     String isLayover;

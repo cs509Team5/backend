@@ -1,6 +1,5 @@
 package com.example.arst5backend.repository.airlines;
 
-import com.example.arst5backend.model.airlines.Deltas;
 import com.example.arst5backend.model.airlines.FlightCapacity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

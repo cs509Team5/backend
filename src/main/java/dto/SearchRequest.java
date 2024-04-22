@@ -61,5 +61,4 @@ public class SearchRequest {
         this.returnDate = returnDate;
     }
     // t
-
 }

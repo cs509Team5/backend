@@ -19,16 +19,15 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 public class FlightCapacity {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    Long id;
 
     Timestamp departdatetime;
     Timestamp arrivedatetime;
     String departairport;
     String arriveairport;
     String flightnumber;
-    int firstclassnum;
     String flighttype;
+    int firstclassnum;
     int economyclassnum;
 }
 

@@ -1,6 +1,6 @@
 package com.example.arst5backend.controller;
 
-import com.example.arst5backend.service.ViewService;
+import com.example.arst5backend.service.view.IViewService;
 import dto.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/view")
 public class ViewDetail {
-    private final ViewService viewService;
-
+    private final IViewService viewService;
     @Autowired
-    public ViewDetail(ViewService viewService) {
+    public ViewDetail(IViewService viewService) {
         this.viewService = viewService;
     }
 
