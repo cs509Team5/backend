@@ -1,8 +1,7 @@
 package com.example.arst5backend.controller;
 
-import com.example.arst5backend.service.ReserveService;
-import com.example.arst5backend.service.SearchService;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.example.arst5backend.service.reserve.IReserveService;
+import com.example.arst5backend.service.reserve.ReserveService;
 import dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
-import java.util.List;
-
 @RestController
 @RequestMapping("/reserve")
 public class ReserveFlight {
-    private final ReserveService reserveService;
+    private final IReserveService reserveService;
 
     @Autowired
-    public ReserveFlight(ReserveService reserveService){
+    public ReserveFlight(IReserveService reserveService){
         this.reserveService = reserveService;
     }
 
