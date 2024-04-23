@@ -18,37 +18,37 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class SearchFlight {
 
-    private final ISearchStrategy searchStrategy;
+  private final ISearchStrategy searchStrategy;
 
-    @Autowired
-    public SearchFlight(ISearchStrategy searchStrategy) {
-        this.searchStrategy = searchStrategy;
-    }
+  @Autowired
+  public SearchFlight(ISearchStrategy searchStrategy) {
+    this.searchStrategy = searchStrategy;
+  }
 
-    @PostMapping
-    public SearchResponse search(@RequestBody SearchRequest searchRequest) {
+  @PostMapping
+  public SearchResponse search(@RequestBody SearchRequest searchRequest) {
 
-        List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
+    List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
+        searchRequest.getDepartureAirport(),
+        searchRequest.getArrivalAirport(),
+        searchRequest.getNumberOfStopover(),
+        searchRequest.isAcceptEconomy(),
+        searchRequest.isAcceptFirstClass(),
+        searchRequest.getDepartureDate());
+
+    SearchResponse searchResponse = new SearchResponse();
+    searchResponse.setDepartureFlights(allDepartureFlights);
+
+    if (searchRequest.getReturnDate() != null) {
+      List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
           searchRequest.getDepartureAirport(),
           searchRequest.getArrivalAirport(),
           searchRequest.getNumberOfStopover(),
           searchRequest.isAcceptEconomy(),
           searchRequest.isAcceptFirstClass(),
-          searchRequest.getDepartureDate());
-
-        SearchResponse searchResponse = new SearchResponse();
-        searchResponse.setDepartureFlights(allDepartureFlights);
-
-        if (searchRequest.getReturnDate() != null) {
-            List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
-              searchRequest.getArrivalAirport(),
-              searchRequest.getDepartureAirport(),
-              searchRequest.getNumberOfStopover(),
-              searchRequest.isAcceptEconomy(),
-              searchRequest.isAcceptFirstClass(),
-              searchRequest.getReturnDate());
-            searchResponse.setReturnFlights(allReturnFlights);
-        }
-        return searchResponse;
+          searchRequest.getReturnDate());
+      searchResponse.setReturnFlights(allReturnFlights);
     }
+    return searchResponse;
+  }
 }
