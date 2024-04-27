@@ -20,7 +20,7 @@ env:
   PROJECT_ID: cs509team5
   GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: cs509cluster # TODO: update to cluster name
-  GKE_ZONE: us-central1-c # TODO: update to cluster zone
+  GKE_ZONE: us-central1-a # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-deployment # TODO: update to deployment name
   REPOSITORY: samples # TODO: update to Artifact Registry docker repository
   IMAGE: static-site
@@ -54,12 +54,6 @@ jobs:
         with:
           credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
           token_format: "access_token"
-
-      - name: Print access token for debugging
-        run: |-
-          echo "Access Token: ${{ steps.auth.outputs.access_token }}"
-        env:
-          ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
 
       - name: Docker configuration
         run: |-
