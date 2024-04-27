@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: us-central1-docker.pkg.dev/cs509team5/samples/static-site:GITHUB_SHA
+          image: us-central1-docker.pkg.dev/cs509team5/samples/static-site:latest
           ports:
             - containerPort: 8080 # Default Spring Boot port
           resources:
