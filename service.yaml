@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: spring-boot-service
   labels:
-    app: spring-boot-app
+    app: backend-app
 spec:
   type: LoadBalancer
   ports:
@@ -11,4 +11,4 @@ spec:
       targetPort: 8080
       protocol: TCP
   selector:
-    app: spring-boot-app
+    app: backend-app
