@@ -33,14 +33,14 @@ spec:
             httpGet:
               path: /actuator/health # Spring Actuator health endpoint
               port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 60
+            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 20
-            periodSeconds: 5
+            initialDelaySeconds: 60
+            periodSeconds: 10
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.17
           command:
