@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  labels:
+    app: backend-app
+spec:
+  replicas: 1 # Number of instances
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: backend-app
+          image: us-central1-docker.pkg.dev/cs509team5/samples/static-site:latest
+          ports:
+            - containerPort: 8080 # Default Spring Boot port
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health # Spring Actuator health endpoint
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.17
+          command:
+            [
+              "/cloud_sql_proxy",
+              "-instances=cs509team5:us-central1:team509=tcp:3306",
+              "-credential_file=/secrets/cloudsql/credentials.json",
+            ]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+          ports:
+            - containerPort: 3306
+
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
