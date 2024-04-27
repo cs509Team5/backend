@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-app
 spec:
-  replicas: 2 # Number of instances
+  replicas: 1 # Number of instances
   selector:
     matchLabels:
       app: backend-app
