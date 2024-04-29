@@ -1,13 +1,9 @@
 package com.example.arst5backend.controller;
 
 import com.example.arst5backend.service.reserve.IReserveService;
-import com.example.arst5backend.service.reserve.ReserveService;
 import dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reserve")
@@ -19,7 +15,7 @@ public class ReserveFlight {
         this.reserveService = reserveService;
     }
 
-    @GetMapping
+    @PostMapping
     public ReserveResponse reserve(@RequestBody ReserveRequest reserveRequest) {
         System.out.println(reserveRequest);
         ReserveResponse reserveResponse = new ReserveResponse();
