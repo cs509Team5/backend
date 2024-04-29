@@ -6,48 +6,60 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class SearchService implements ISearchService {
-    private final ISearchStopoverService searchStopoverService;
-    private final ISearchNonStopoverService searchNonStopoverService;
+    private final ISearchService searchNonStopoverService;
+    private final ISearchService searchStopoverService;
     @Autowired
     public SearchService(
-      ISearchStopoverService searchStopoverService,
-      ISearchNonStopoverService searchNonStopoverService)
+      ISearchService searchNonStopoverService,
+      ISearchService searchStopoverService
+      )
     {
-        this.searchStopoverService = searchStopoverService;
+
         this.searchNonStopoverService = searchNonStopoverService;
+        this.searchStopoverService = searchStopoverService;
     }
     @Override
     public List<FlightInfo> searchFlights(
-            String DepartAirport,
-            String ArriveAirport,
-            List<Integer> my_list,
-            Boolean AcceptEconomy,
-            Boolean AcceptFirstClass,
-            Date DepartDate
-    ) {
-        List<FlightInfo> flights = new ArrayList<>();
-        flights = searchNonStopoverService.searchDetail(
+      String DepartAirport,
+      String ArriveAirport,
+      int numberOfStopover,
+      Boolean AcceptEconomy,
+      Boolean AcceptFirstClass,
+      Date DepartDate) {
+      List<FlightInfo> flights = new ArrayList<>();
+      if (numberOfStopover == 0) {
+        flights.addAll(searchNonStopoverService.searchFlights(
           DepartAirport,
           ArriveAirport,
+          numberOfStopover,
           AcceptEconomy,
           AcceptFirstClass,
-          DepartDate,
-          flights);
-
-        if (my_list.contains(1)) {
-          List<FlightInfo> flights1 = searchStopoverService.searchDetail(
-            DepartAirport,
-            ArriveAirport,
-            AcceptEconomy,
-            AcceptFirstClass,
-            DepartDate,
-            flights);
-            flights.addAll(flights1);
+          DepartDate));
+        } else {
+        flights.addAll(searchNonStopoverService.searchFlights(
+          DepartAirport,
+          ArriveAirport,
+          numberOfStopover,
+          AcceptEconomy,
+          AcceptFirstClass,
+          DepartDate));
+        flights.addAll(searchStopoverService.searchFlights(
+          DepartAirport,
+          ArriveAirport,
+          numberOfStopover,
+          AcceptEconomy,
+          AcceptFirstClass,
+          DepartDate));
         }
-    return flights;
+      return flights;
     }
 }
+
+
+
+

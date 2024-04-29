@@ -5,17 +5,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import com.example.arst5backend.service.airlines.FlightReserveService;
-import com.example.arst5backend.service.airlines.IFlightReserveService;
-import com.example.arst5backend.service.reserve.IReserveDetail;
-import com.example.arst5backend.service.reserve.IReserveService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -26,7 +21,7 @@ public class ReserveServiceTest {
   private FlightReserveService flightReserveService;
 
   @Mock
-  private DeltasReserveRepository deltasReserveRepository;
+  private FlightsReserveRepository flightsReserveRepository;
 
   @Mock
   private IReserveDetail reserveDetail;
@@ -36,7 +31,7 @@ public class ReserveServiceTest {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
-    reserveService = new ReserveService(flightReserveService, deltasReserveRepository, reserveDetail);
+    reserveService = new ReserveService(flightReserveService, flightsReserveRepository, reserveDetail);
   }
 
   @Test
@@ -57,7 +52,7 @@ public class ReserveServiceTest {
     flightCapacityList.add(flightCapacity);
 
     when(flightReserveService.searchFlights(DepartAirport, ArriveAirport, FlightNumber, departure_min_timestamp, departure_max_timestamp)).thenReturn(flightCapacityList);
-    when(deltasReserveRepository.saveAndFlush(any(FlightCapacity.class))).thenReturn(null);
+    when(flightsReserveRepository.saveAndFlush(any(FlightCapacity.class))).thenReturn(null);
     when(reserveDetail.detail(any(FlightCapacity.class))).thenReturn("Reservation details");
 
     String result = reserveService.reserveFlights(DepartAirport, ArriveAirport, FlightNumber, SeatType, departDate);

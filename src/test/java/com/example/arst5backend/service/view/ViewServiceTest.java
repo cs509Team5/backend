@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.view;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import dto.FlightInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class ViewServiceTest {
 
   @Mock
-  private DeltasReserveRepository deltasReserveRepository;
+  private FlightsReserveRepository flightsReserveRepository;
 
   @InjectMocks
   private ViewService viewService;
@@ -49,7 +49,7 @@ public class ViewServiceTest {
     List<FlightCapacity> flightCapacityList = new ArrayList<>();
     flightCapacityList.add(flightCapacity);
 
-    when(deltasReserveRepository.findByDepartairportAndFlightnumberAndDepartdatetimeGreaterThanEqual(
+    when(flightsReserveRepository.findByDepartairportAndFlightnumberAndDepartdatetimeGreaterThanEqual(
       any(String.class), any(String.class), any(Timestamp.class)))
       .thenReturn(flightCapacityList);
 

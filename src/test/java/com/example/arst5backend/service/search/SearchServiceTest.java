@@ -17,10 +17,10 @@ import static org.mockito.Mockito.*;
 public class SearchServiceTest {
 
   @Mock
-  private ISearchStopoverService searchStopoverService;
+  private SearchStopoverService searchStopoverService;
 
   @Mock
-  private ISearchNonStopoverService searchNonStopoverService;
+  private SearchNonStopoverService searchNonStopoverService;
 
   @InjectMocks
   private SearchService searchService;
@@ -32,53 +32,51 @@ public class SearchServiceTest {
 
   @Test
   public void testSearchFlights_1Stopover() {
+    // Setup
     String departAirport = "JFK";
     String arriveAirport = "LAX";
-    List<Integer> myList = new ArrayList<>();
-    myList.add(1);
+    int numberOfStopover = 1;
     Boolean acceptEconomy = true;
     Boolean acceptFirstClass = false;
     Date departDate = new Date(System.currentTimeMillis());
-
+    // Expected results
     List<FlightInfo> nonStopoverFlights = new ArrayList<>();
-    nonStopoverFlights.add(new FlightInfo());
 
     List<FlightInfo> stopoverFlights = new ArrayList<>();
-    stopoverFlights.add(new FlightInfo());
 
-    when(searchNonStopoverService.searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, new ArrayList<>()))
+    // Stubbing
+    when(searchNonStopoverService.searchFlights(departAirport, arriveAirport, 0, acceptEconomy, acceptFirstClass, departDate))
       .thenReturn(nonStopoverFlights);
-
-    when(searchStopoverService.searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, nonStopoverFlights))
+    when(searchStopoverService.searchFlights(departAirport, arriveAirport, numberOfStopover, acceptEconomy, acceptFirstClass, departDate))
       .thenReturn(stopoverFlights);
-
-    List<FlightInfo> result = searchService.searchFlights(departAirport, arriveAirport, myList, acceptEconomy, acceptFirstClass, departDate);
-
-    assertEquals(2, result.size());
-    verify(searchNonStopoverService, times(1)).searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, new ArrayList<>());
-    verify(searchStopoverService, times(1)).searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, nonStopoverFlights);
+    // Execution
+    List<FlightInfo> result = searchService.searchFlights(departAirport, arriveAirport, numberOfStopover, acceptEconomy, acceptFirstClass, departDate);
+    // Verification
+    List<FlightInfo> expectedResults = new ArrayList<>();
+    for (FlightInfo item: nonStopoverFlights){
+      expectedResults.add(item);
+    }
+    for (FlightInfo item: stopoverFlights) {
+      expectedResults.add(item);
+    }
+    assertEquals(expectedResults, result); // 1 from each service
   }
-
   @Test
   public void testSearchFlights_NonStopover() {
 
     String departAirport = "JFK";
     String arriveAirport = "LAX";
-    List<Integer> myList = new ArrayList<>();
-    myList.add(0);
+    int numberOfStopover = 0;
     Boolean acceptEconomy = true;
     Boolean acceptFirstClass = false;
     Date departDate = new Date(System.currentTimeMillis());
 
     List<FlightInfo> nonStopoverFlights = new ArrayList<>();
-    nonStopoverFlights.add(new FlightInfo());
 
-    when(searchNonStopoverService.searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, new ArrayList<>()))
+    when(searchNonStopoverService.searchFlights(departAirport, arriveAirport, numberOfStopover, acceptEconomy, acceptFirstClass, departDate))
       .thenReturn(nonStopoverFlights);
 
-    List<FlightInfo> result = searchService.searchFlights(departAirport, arriveAirport, myList, acceptEconomy, acceptFirstClass, departDate);
-
-    assertEquals(1, result.size());
-    verify(searchNonStopoverService, times(1)).searchDetail(departAirport, arriveAirport, acceptEconomy, acceptFirstClass, departDate, new ArrayList<>());
+    List<FlightInfo> result = searchService.searchFlights(departAirport, arriveAirport, numberOfStopover, acceptEconomy, acceptFirstClass, departDate);
+    assertEquals(nonStopoverFlights, result);
   }
 }

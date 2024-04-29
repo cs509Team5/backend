@@ -4,10 +4,7 @@ import com.example.arst5backend.service.view.IViewService;
 import dto.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
@@ -19,7 +16,7 @@ public class ViewDetail {
         this.viewService = viewService;
     }
 
-    @GetMapping
+    @PostMapping
     public ViewResponse view(@RequestBody ViewRequest viewRequest) {
         System.out.println("View request: " + viewRequest);
         FlightInfo flightDetail = viewService.viewDetail(

@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.view;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import dto.FlightInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,17 @@ import java.util.Date;
 import java.util.List;
 @Service
 public class ViewService implements IViewService {
-    private final DeltasReserveRepository deltasReserveRepository;
+    private final FlightsReserveRepository flightsReserveRepository;
     @Autowired
-    public ViewService(DeltasReserveRepository deltasReserveRepository) {
-        this.deltasReserveRepository = deltasReserveRepository;
+    public ViewService(FlightsReserveRepository flightsReserveRepository) {
+        this.flightsReserveRepository = flightsReserveRepository;
     }
     @Override
     public FlightInfo viewDetail(String departAirport, Date departDate, String flightNumber) {
 
         FlightInfo flight = new FlightInfo();
         Timestamp minDepartDateTime = new Timestamp(departDate.getTime());
-        List<FlightCapacity> flightResult  = deltasReserveRepository.findByDepartairportAndFlightnumberAndDepartdatetimeGreaterThanEqual(
+        List<FlightCapacity> flightResult  = flightsReserveRepository.findByDepartairportAndFlightnumberAndDepartdatetimeGreaterThanEqual(
                 departAirport,
                 flightNumber,
                 minDepartDateTime
