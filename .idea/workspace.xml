@@ -5,81 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a703139b-acfd-4396-9eb3-52ef96a23dc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/repository/airlines/FlightsReserveRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/repository/airlines/FlightsReserveRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/controller/SearchFlight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/controller/SearchFlight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/controller/ViewDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/controller/ViewDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/repository/airlines/DeltasRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/repository/airlines/DeltasReserveRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/FlightReserveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/FlightReserveService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/ISearchTicketsStopoverArrive.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/ISearchTicketsStopoverDepart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTickets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTickets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverArrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverArrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/reserve/ReserveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/reserve/ReserveService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISearchNonStopoverService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISearchStopoverService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISearchStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/ISetFlight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchNonStopoverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchNonStopoverService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchStopoverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchStopoverService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SearchStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SetFlight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/search/SetFlight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/view/ViewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/arst5backend/service/view/ViewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/controller/SearchFlightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/controller/SearchFlightTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/repository/airlines/DeltasReserveRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/FlightReserveServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/FlightReserveServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverArriveTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverArriveTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepartTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/airlines/SearchTicketsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/reserve/ReserveServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/reserve/ReserveServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchNonStopoverServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchNonStopoverServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchStopoverServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchStopoverServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/search/SearchStrategyTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/view/ViewServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/arst5backend/service/view/ViewServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/Arst5backendApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/Arst5backendApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/controller/SearchFlight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/controller/SearchFlight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/controller/ViewDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/controller/ViewDetail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/repository/airlines/DeltasRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/repository/airlines/DeltasReserveRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/FlightReserveService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/FlightReserveService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/ISearchTicketsStopoverArrive.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/ISearchTicketsStopoverDepart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTickets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTickets.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverArrive.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverArrive.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/reserve/ReserveService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/reserve/ReserveService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISearchNonStopoverService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISearchService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISearchStopoverService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISearchStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/ISetFlight.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchNonStopoverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchNonStopoverService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchStopoverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchStopoverService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SearchStrategy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SetFlight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/search/SetFlight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/view/ViewService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/arst5backend/service/view/ViewService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/controller/SearchFlightTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/controller/SearchFlightTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/repository/airlines/DeltasReserveRepositoryTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/FlightReserveServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/FlightReserveServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverArriveTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverArriveTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepartTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsStopoverDepartTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/airlines/SearchTicketsTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/reserve/ReserveServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/reserve/ReserveServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchNonStopoverServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchNonStopoverServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchStopoverServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchStopoverServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/search/SearchStrategyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/view/ViewServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/arst5backend/service/view/ViewServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,45 +38,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.FlightCapacityTest.executor": "Run",
-    "JUnit.FlightReserveServiceTest.executor": "Run",
-    "JUnit.FlightsReserveRepositoryTest.executor": "Run",
-    "JUnit.ReserveDetailTest.executor": "Run",
-    "JUnit.ReserveFlightTest.executor": "Run",
-    "JUnit.ReserveServiceTest.executor": "Run",
-    "JUnit.SearchFlightTest.executor": "Run",
-    "JUnit.SearchNonStopoverServiceTest.executor": "Run",
-    "JUnit.SearchNonStopoverServiceTest.testSearchDetail.executor": "Run",
-    "JUnit.SearchServiceTest.executor": "Run",
-    "JUnit.SearchServiceTest.testSearchFlights_1Stopover.executor": "Run",
-    "JUnit.SearchServiceTest.testSearchFlights_NonStopover.executor": "Run",
-    "JUnit.SearchStopoverServiceTest.executor": "Run",
-    "JUnit.SearchStopoverServiceTest.testSearchDetail_AllClassesAccepted_NonNullDepartTimes.executor": "Run",
-    "JUnit.SearchStopoverServiceTest.testSearchFlights.executor": "Run",
-    "JUnit.SearchTicketsStopoverArriveTest.executor": "Run",
-    "JUnit.SearchTicketsStopoverDepartTest.executor": "Run",
-    "JUnit.SearchTicketsTest.executor": "Run",
-    "JUnit.SetFlightTest.executor": "Run",
-    "JUnit.ViewDetailTest.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Arst5backendApplication.executor": "Run",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ruizh/Desktop/509 final exam/atm",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.FlightCapacityTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FlightReserveServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FlightsReserveRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReserveDetailTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReserveFlightTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReserveServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchFlightTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchNonStopoverServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchNonStopoverServiceTest.testSearchDetail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchServiceTest.testSearchFlights_1Stopover.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchServiceTest.testSearchFlights_NonStopover.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchStopoverServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchStopoverServiceTest.testSearchDetail_AllClassesAccepted_NonNullDepartTimes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchStopoverServiceTest.testSearchFlights.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchTicketsStopoverArriveTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchTicketsStopoverDepartTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SearchTicketsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SetFlightTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ViewDetailTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Arst5backendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ruizh/Desktop/509 final exam/atm&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot.Arst5backendApplication">
     <configuration name="FlightReserveServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="arst5backend" />
@@ -281,6 +208,7 @@
       <workItem from="1714415335859" duration="1541000" />
       <workItem from="1714416890143" duration="181000" />
       <workItem from="1714417105319" duration="2388000" />
+      <workItem from="1714419674728" duration="23000" />
     </task>
     <servers />
   </component>
