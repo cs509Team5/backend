@@ -5,9 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
 import dto.FlightInfo;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
 import com.example.arst5backend.service.airlines.ISearchTickets;
-import com.example.arst5backend.service.search.ISearchNonStopoverService;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -35,15 +33,27 @@ public class SearchNonStopoverServiceTest {
 
     String DepartAirport = "JFK";
     String ArriveAirport = "LAX";
+    int numberOfStopover = 1;
     Boolean AcceptEconomy = true;
     Boolean AcceptFirstClass = true;
     Date DepartDate = new Date(System.currentTimeMillis());
 
-    Timestamp departureMinTimestamp = new Timestamp(DepartDate.getTime());
+    // Get a Calendar instance and set the time to DepartDate
+    Calendar departCalendarMin = Calendar.getInstance();
+    departCalendarMin.setTime(DepartDate);
+
+    // Reset hour, minute, second, and millisecond
+    departCalendarMin.set(Calendar.HOUR_OF_DAY, 0);
+    departCalendarMin.set(Calendar.MINUTE, 0);
+    departCalendarMin.set(Calendar.SECOND, 0);
+    departCalendarMin.set(Calendar.MILLISECOND, 0);
+
+    Timestamp departure_min_timestamp = new Timestamp(departCalendarMin.getTimeInMillis());
+    // Construct the max time stamp.
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(DepartDate);
     calendar.add(Calendar.DAY_OF_MONTH, 1);
-    Timestamp departureMaxTimestamp = new Timestamp(calendar.getTimeInMillis());
+    Timestamp departure_max_timestamp = new Timestamp(calendar.getTimeInMillis());
 
     List<FlightCapacity> flightCapacityList = new ArrayList<>();
     FlightCapacity flightCapacity = new FlightCapacity();
@@ -51,28 +61,28 @@ public class SearchNonStopoverServiceTest {
     flightCapacity.setFirstclassnum(5);
     flightCapacity.setDepartairport(DepartAirport);
     flightCapacity.setArriveairport(ArriveAirport);
-    flightCapacity.setDepartdatetime(departureMinTimestamp);
-    flightCapacity.setArrivedatetime(departureMaxTimestamp);
+    flightCapacity.setDepartdatetime(departure_min_timestamp);
+    flightCapacity.setArrivedatetime(departure_max_timestamp);
     flightCapacity.setFlightnumber("DL1234");
     flightCapacityList.add(flightCapacity);
 
 
     when(
       searchTickets.searchTickets(
-        DepartAirport, ArriveAirport, departureMinTimestamp, departureMaxTimestamp))
+        DepartAirport, ArriveAirport, departure_min_timestamp, departure_max_timestamp))
       .thenReturn(flightCapacityList);
 
     List<FlightInfo> result =
-      searchNonStopoverService.searchDetail(
-        DepartAirport, ArriveAirport, AcceptEconomy, AcceptFirstClass, DepartDate, new ArrayList<>());
+      searchNonStopoverService.searchFlights(
+        DepartAirport, ArriveAirport, numberOfStopover, AcceptEconomy, AcceptFirstClass, DepartDate);
 
     assertEquals(1, result.size());
     FlightInfo flightInfo = result.get(0);
     assertEquals("Economy and first class options available", flightInfo.getSeatClass());
     assertEquals(DepartAirport, flightInfo.getDepartAirport());
     assertEquals(ArriveAirport, flightInfo.getArriveAirport());
-    assertEquals(departureMinTimestamp, flightInfo.getDepartDatetime());
-    assertEquals(departureMaxTimestamp, flightInfo.getArriveDatetime());
+    assertEquals(departure_min_timestamp, flightInfo.getDepartDatetime());
+    assertEquals(departure_max_timestamp, flightInfo.getArriveDatetime());
     assertEquals("DL1234", flightInfo.getFlightNumber());
     assertEquals("Direct Flight", flightInfo.getIsLayover());
   }

@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.airlines;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +9,20 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class SearchTicketsStopoverDepart implements  ISearchTicketsStopoverDepart{
-  private final DeltasReserveRepository deltasReserveRepository;
-
+public class SearchTicketsStopoverDepart implements ISearchTickets{
+  private final FlightsReserveRepository flightsReserveRepository;
   @Autowired
-  public SearchTicketsStopoverDepart(DeltasReserveRepository deltasReserveRepository) {
-    this.deltasReserveRepository = deltasReserveRepository;
+  public SearchTicketsStopoverDepart(FlightsReserveRepository flightsReserveRepository) {
+    this.flightsReserveRepository = flightsReserveRepository;
   }
   @Override
-  public List<FlightCapacity> searchTicketsDepart(
+  public List<FlightCapacity> searchTickets(
     String DepartAirport,
+    String ArriveAirport,
     Timestamp MinDepartDateTime,
     Timestamp MaxDepartDateTime
   ) {
-    return deltasReserveRepository.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    return flightsReserveRepository.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       DepartAirport,
       MinDepartDateTime,
       MaxDepartDateTime

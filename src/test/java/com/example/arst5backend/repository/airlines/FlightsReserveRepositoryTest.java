@@ -14,13 +14,13 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-public class DeltasReserveRepositoryTest {
+public class FlightsReserveRepositoryTest {
 
   @InjectMocks
   private FlightReserveService flightReserveService;
 
   @Mock
-  private DeltasReserveRepository deltasReserveRepository;
+  private FlightsReserveRepository flightsReserveRepository;
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -28,7 +28,7 @@ public class DeltasReserveRepositoryTest {
 
   @Test
   public void testSomeMethod() {
-    when(deltasReserveRepository.findByDepartairportAndArriveairportAndFlightnumberAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    when(flightsReserveRepository.findByDepartairportAndArriveairportAndFlightnumberAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       anyString(), anyString(), anyString(), any(Timestamp.class), any(Timestamp.class)))
       .thenReturn(new ArrayList<>());
   }

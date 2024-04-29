@@ -1,6 +1,6 @@
 package com.example.arst5backend.controller;
 
-import com.example.arst5backend.service.search.ISearchStrategy;
+import com.example.arst5backend.service.search.ISearchService;
 import dto.FlightInfo;
 import dto.SearchRequest;
 import dto.SearchResponse;
@@ -18,17 +18,17 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class SearchFlight {
 
-  private final ISearchStrategy searchStrategy;
+  private final ISearchService searchService;
 
   @Autowired
-  public SearchFlight(ISearchStrategy searchStrategy) {
-    this.searchStrategy = searchStrategy;
+  public SearchFlight(ISearchService searchService) {
+    this.searchService = searchService;
   }
 
   @PostMapping
   public SearchResponse search(@RequestBody SearchRequest searchRequest) {
 
-    List<FlightInfo> allDepartureFlights = searchStrategy.evaluate(
+    List<FlightInfo> allDepartureFlights = searchService.searchFlights(
         searchRequest.getDepartureAirport(),
         searchRequest.getArrivalAirport(),
         searchRequest.getNumberOfStopover(),
@@ -40,7 +40,7 @@ public class SearchFlight {
     searchResponse.setDepartureFlights(allDepartureFlights);
 
     if (searchRequest.getReturnDate() != null) {
-      List<FlightInfo> allReturnFlights = searchStrategy.evaluate(
+      List<FlightInfo> allReturnFlights = searchService.searchFlights(
           searchRequest.getDepartureAirport(),
           searchRequest.getArrivalAirport(),
           searchRequest.getNumberOfStopover(),

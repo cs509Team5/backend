@@ -5,9 +5,8 @@ import dto.FlightInfo;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SetFlight implements ISetFlight{
+public class SetFlight {
 
-  @Override
   public FlightInfo set(
     FlightCapacity flightResult,
     FlightInfo flight)

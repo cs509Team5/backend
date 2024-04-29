@@ -9,7 +9,7 @@ public interface ISearchService {
   List<FlightInfo> searchFlights(
      String DepartAirport,
      String ArriveAirport,
-     List<Integer> my_list,
+     int numberOfStopover,
      Boolean AcceptEconomy,
      Boolean AcceptFirstClass,
      Date DepartDate

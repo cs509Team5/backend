@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.airlines;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 public class SearchTicketsTest {
 
   @Mock
-  private DeltasReserveRepository deltasReserveRepositoryMock;
+  private FlightsReserveRepository flightsReserveRepositoryMock;
 
   @InjectMocks
   private SearchTickets searchTickets;
@@ -35,7 +35,7 @@ public class SearchTicketsTest {
       new FlightCapacity(),
       new FlightCapacity()
     );
-    when(deltasReserveRepositoryMock.findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    when(flightsReserveRepositoryMock.findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       anyString(), anyString(), any(Timestamp.class), any(Timestamp.class)))
       .thenReturn(expectedFlights);
 
@@ -46,7 +46,7 @@ public class SearchTicketsTest {
     );
 
     assertEquals(expectedFlights.size(), actualFlights.size());
-    verify(deltasReserveRepositoryMock, times(1)).findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    verify(flightsReserveRepositoryMock, times(1)).findByDepartairportAndArriveairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       anyString(), anyString(), any(Timestamp.class), any(Timestamp.class));
   }
 }

@@ -8,26 +8,26 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 @Service
-public class SearchNonStopoverService implements ISearchNonStopoverService {
+public class SearchNonStopoverService implements ISearchService {
   private final ISearchTickets searchTickets;
-
   @Autowired
   public SearchNonStopoverService(ISearchTickets searchTickets) {
     this.searchTickets = searchTickets;
   }
-
   @Override
-  public List<FlightInfo> searchDetail(
-      String DepartAirport,
-      String ArriveAirport,
-      Boolean AcceptEconomy,
-      Boolean AcceptFirstClass,
-      Date DepartDate,
-      List<FlightInfo> flights) {
+  public List<FlightInfo> searchFlights(
+    String DepartAirport,
+    String ArriveAirport,
+    int numberOfStopover,
+    Boolean AcceptEconomy,
+    Boolean AcceptFirstClass,
+    Date DepartDate
+  ){
     // Get a Calendar instance and set the time to DepartDate
     Calendar departCalendarMin = Calendar.getInstance();
     departCalendarMin.setTime(DepartDate);
@@ -44,6 +44,7 @@ public class SearchNonStopoverService implements ISearchNonStopoverService {
     calendar.setTime(DepartDate);
     calendar.add(Calendar.DAY_OF_MONTH, 1);
     Timestamp departure_max_timestamp = new Timestamp(calendar.getTimeInMillis());
+    List<FlightInfo> flights = new ArrayList<>();
     List<FlightCapacity> flightResults = searchTickets.searchTickets(
         DepartAirport,
         ArriveAirport,

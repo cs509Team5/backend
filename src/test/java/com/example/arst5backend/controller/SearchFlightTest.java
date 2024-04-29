@@ -1,6 +1,6 @@
 package com.example.arst5backend.controller;
 
-import com.example.arst5backend.service.search.ISearchStrategy;
+import com.example.arst5backend.service.search.ISearchService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.FlightInfo;
 import dto.SearchRequest;
@@ -25,18 +25,18 @@ public class SearchFlightTest {
   private MockMvc mockMvc;
 
   @Mock
-  private ISearchStrategy searchStrategy;
+  private ISearchService searchService;
 
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    mockMvc = MockMvcBuilders.standaloneSetup(new SearchFlight(searchStrategy)).build();
+    mockMvc = MockMvcBuilders.standaloneSetup(new SearchFlight(searchService)).build();
   }
 
   @Test
   public void testSearch() throws Exception {
     List<FlightInfo> departureFlights = Collections.singletonList(new FlightInfo());
-    when(searchStrategy.evaluate(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any()))
+    when(searchService.searchFlights(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any()))
       .thenReturn(departureFlights);
 
     SearchRequest searchRequest = new SearchRequest();
@@ -57,7 +57,7 @@ public class SearchFlightTest {
     List<FlightInfo> departureFlights = Collections.singletonList(new FlightInfo());
     List<FlightInfo> returnFlights = Collections.singletonList(new FlightInfo());
 
-    when(searchStrategy.evaluate(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any(Date.class)))
+    when(searchService.searchFlights(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any(Date.class)))
       .thenReturn(departureFlights, returnFlights);
 
     SearchRequest searchRequest = new SearchRequest();
@@ -76,7 +76,7 @@ public class SearchFlightTest {
         .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk());
 
-    verify(searchStrategy, times(2)).evaluate(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any(Date.class));
+    verify(searchService, times(2)).searchFlights(anyString(), anyString(), anyInt(), anyBoolean(), anyBoolean(), any(Date.class));
   }
 
   private String asJsonString(final Object obj) {

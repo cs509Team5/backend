@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.reserve;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import com.example.arst5backend.service.airlines.FlightReserveService;
 import com.example.arst5backend.service.airlines.IFlightReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import java.util.List;
 public class ReserveService implements IReserveService{
     private final IFlightReserveService flightReserveService;
     private final IReserveDetail reserveDetail;
-    private final DeltasReserveRepository deltasReserveRepository;
+    private final FlightsReserveRepository flightsReserveRepository;
     @Autowired
     public ReserveService(FlightReserveService flightReserveService,
-                          DeltasReserveRepository deltasReserveRepository,
+                          FlightsReserveRepository flightsReserveRepository,
                           IReserveDetail reserveDetail) {
         this.flightReserveService = flightReserveService;
-        this.deltasReserveRepository = deltasReserveRepository;
+        this.flightsReserveRepository = flightsReserveRepository;
         this.reserveDetail = reserveDetail;
     }
     @Override
@@ -57,7 +57,7 @@ public class ReserveService implements IReserveService{
                 num = tmp.getFirstclassnum();
                 if (num >= 1) {
                     tmp.setFirstclassnum(num - 1);
-                    deltasReserveRepository.saveAndFlush(tmp);
+                    flightsReserveRepository.saveAndFlush(tmp);
                     bookingDetails = (reserveDetail.detail(tmp)  + "\nSeat Type: FirstClass");
                     System.out.println(bookingDetails);
                     return bookingDetails;
@@ -69,7 +69,7 @@ public class ReserveService implements IReserveService{
                 num = tmp.getEconomyclassnum();
                 if (num >= 1) {
                     tmp.setEconomyclassnum(num - 1);
-                    deltasReserveRepository.saveAndFlush(tmp);
+                    flightsReserveRepository.saveAndFlush(tmp);
                     bookingDetails = (reserveDetail.detail(tmp) + "\nSeat Type: EconomyClass");
                     System.out.println(bookingDetails);
                     return bookingDetails;

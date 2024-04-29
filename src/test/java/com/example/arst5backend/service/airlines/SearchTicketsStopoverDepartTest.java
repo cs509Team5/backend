@@ -1,7 +1,7 @@
 package com.example.arst5backend.service.airlines;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.repository.airlines.DeltasReserveRepository;
+import com.example.arst5backend.repository.airlines.FlightsReserveRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class SearchTicketsStopoverDepartTest {
 
   @Mock
-  private DeltasReserveRepository deltasReserveRepositoryMock;
+  private FlightsReserveRepository flightsReserveRepositoryMock;
 
   @InjectMocks
   private SearchTicketsStopoverDepart searchTicketsStopoverDepart;
@@ -36,18 +36,19 @@ public class SearchTicketsStopoverDepartTest {
       new FlightCapacity(),
       new FlightCapacity()
     );
-    when(deltasReserveRepositoryMock.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    when(flightsReserveRepositoryMock.findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       anyString(), any(Timestamp.class), any(Timestamp.class)))
       .thenReturn(expectedFlights);
 
-    List<FlightCapacity> actualFlights = searchTicketsStopoverDepart.searchTicketsDepart(
+    List<FlightCapacity> actualFlights = searchTicketsStopoverDepart.searchTickets(
       "LAX",
+      "BOS",
       Timestamp.valueOf("2022-01-20 00:00:00"),
       Timestamp.valueOf("2022-01-30 00:00:00")
     );
 
     assertEquals(expectedFlights.size(), actualFlights.size());
-    verify(deltasReserveRepositoryMock, times(1)).findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
+    verify(flightsReserveRepositoryMock, times(1)).findByDepartairportAndDepartdatetimeGreaterThanEqualAndDepartdatetimeLessThan(
       anyString(), any(Timestamp.class), any(Timestamp.class));
   }
 }

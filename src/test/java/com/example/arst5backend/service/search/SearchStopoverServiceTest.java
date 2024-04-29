@@ -1,14 +1,15 @@
 package com.example.arst5backend.service.search;
 
 import com.example.arst5backend.model.airlines.FlightCapacity;
-import com.example.arst5backend.service.airlines.ISearchTicketsStopoverArrive;
-import com.example.arst5backend.service.airlines.ISearchTicketsStopoverDepart;
+import com.example.arst5backend.service.airlines.SearchTicketsStopoverArrive;
+import com.example.arst5backend.service.airlines.SearchTicketsStopoverDepart;
 import dto.FlightInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -16,30 +17,29 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SearchStopoverServiceTest {
 
   @Mock
-  private ISearchTicketsStopoverDepart searchTicketsStopoverDepart;
+  private SearchTicketsStopoverDepart searchTicketsStopoverDepart;
   @Mock
-  private ISearchTicketsStopoverArrive searchTicketsStopoverArrive;
+  private SearchTicketsStopoverArrive searchTicketsStopoverArrive;
   @Mock
-  private ISetFlight setFlight;
+  private SetFlight setFlight;
 
   @InjectMocks
   private SearchStopoverService searchStopoverService;
-
   private Date departDate;
-  private FlightCapacity sampleFlight1, sampleFlight2;
+
   @BeforeEach
   void setUp() {
+    List<FlightInfo> flights = new ArrayList<>();
     MockitoAnnotations.openMocks(this);
     Calendar cal = Calendar.getInstance();
     cal.set(2022, Calendar.APRIL, 20);
     departDate = new Date(cal.getTimeInMillis());
-
+    FlightCapacity sampleFlight1, sampleFlight2;
     sampleFlight1 = new FlightCapacity();
     sampleFlight1.setDepartairport("JFK");
     sampleFlight1.setArriveairport("LAX");
@@ -49,6 +49,7 @@ public class SearchStopoverServiceTest {
     sampleFlight1.setFlighttype("Non-stop");
     sampleFlight1.setEconomyclassnum(10);
     sampleFlight1.setFirstclassnum(5);
+    when(searchTicketsStopoverDepart.searchTickets(any(), any(), any(), any())).thenReturn(List.of(sampleFlight1));
 
     sampleFlight2 = new FlightCapacity();
     sampleFlight2.setDepartairport("LAX");
@@ -61,8 +62,7 @@ public class SearchStopoverServiceTest {
     sampleFlight2.setEconomyclassnum(15);
     sampleFlight2.setFirstclassnum(10);
 
-    when(searchTicketsStopoverDepart.searchTicketsDepart(any(), any(), any())).thenReturn(List.of(sampleFlight1));
-    when(searchTicketsStopoverArrive.searchTicketsArrive(any(), any(), any())).thenReturn(List.of(sampleFlight2));
+    when(searchTicketsStopoverArrive.searchTickets(any(), any(), any(), any())).thenReturn(List.of(sampleFlight2));
   }
 
   @Test
@@ -79,7 +79,7 @@ public class SearchStopoverServiceTest {
       return info;
     });
 
-    List<FlightInfo> results = searchStopoverService.searchDetail("JFK", "LAX", true, true, departDate, new ArrayList<>());
+    List<FlightInfo> results = searchStopoverService.searchFlights("JFK", "LAX", 1,true, true, departDate);
 
     assertFalse(results.isEmpty());
     assertEquals(2, results.size());
