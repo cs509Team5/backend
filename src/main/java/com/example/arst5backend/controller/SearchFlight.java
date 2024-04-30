@@ -41,8 +41,8 @@ public class SearchFlight {
 
     if (searchRequest.getReturnDate() != null) {
       List<FlightInfo> allReturnFlights = searchService.searchFlights(
-          searchRequest.getDepartureAirport(),
           searchRequest.getArrivalAirport(),
+          searchRequest.getDepartureAirport(),
           searchRequest.getNumberOfStopover(),
           searchRequest.isAcceptEconomy(),
           searchRequest.isAcceptFirstClass(),

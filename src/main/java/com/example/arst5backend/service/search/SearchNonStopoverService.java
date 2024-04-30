@@ -15,19 +15,20 @@ import java.util.List;
 @Service
 public class SearchNonStopoverService implements ISearchService {
   private final ISearchTickets searchTickets;
+
   @Autowired
   public SearchNonStopoverService(ISearchTickets searchTickets) {
     this.searchTickets = searchTickets;
   }
+
   @Override
   public List<FlightInfo> searchFlights(
-    String DepartAirport,
-    String ArriveAirport,
-    int numberOfStopover,
-    Boolean AcceptEconomy,
-    Boolean AcceptFirstClass,
-    Date DepartDate
-  ){
+      String DepartAirport,
+      String ArriveAirport,
+      int numberOfStopover,
+      Boolean AcceptEconomy,
+      Boolean AcceptFirstClass,
+      Date DepartDate) {
     // Get a Calendar instance and set the time to DepartDate
     Calendar departCalendarMin = Calendar.getInstance();
     departCalendarMin.setTime(DepartDate);
@@ -64,6 +65,7 @@ public class SearchNonStopoverService implements ISearchService {
           flight.setFlightNumber(flightResult.getFlightnumber());
           flight.setFlightType(flightResult.getFlighttype());
           flight.setIsLayover("Direct Flight");
+          flight.setPrice(flightResult.getPrice());
           flights.add(flight);
         } else if (economyclassnum > 0 && firstclassnum == 0) {
           flight.setSeatClass("Only economy class available");
@@ -74,6 +76,7 @@ public class SearchNonStopoverService implements ISearchService {
           flight.setFlightNumber(flightResult.getFlightnumber());
           flight.setFlightType(flightResult.getFlighttype());
           flight.setIsLayover("Direct Flight");
+          flight.setPrice(flightResult.getPrice());
           flights.add(flight);
         } else if (economyclassnum == 0 && firstclassnum > 0) {
           flight.setSeatClass("Only first class available");
@@ -84,6 +87,7 @@ public class SearchNonStopoverService implements ISearchService {
           flight.setFlightNumber(flightResult.getFlightnumber());
           flight.setFlightType(flightResult.getFlighttype());
           flight.setIsLayover("Direct Flight");
+          flight.setPrice(flightResult.getPrice());
           flights.add(flight);
         }
       } else if (AcceptEconomy == true && AcceptFirstClass == false) {
@@ -96,6 +100,7 @@ public class SearchNonStopoverService implements ISearchService {
           flight.setFlightNumber(flightResult.getFlightnumber());
           flight.setFlightType(flightResult.getFlighttype());
           flight.setIsLayover("Direct Flight");
+          flight.setPrice(flightResult.getPrice());
           flights.add(flight);
         }
       } else if (AcceptEconomy == false && AcceptFirstClass == true) {
@@ -108,6 +113,7 @@ public class SearchNonStopoverService implements ISearchService {
           flight.setFlightNumber(flightResult.getFlightnumber());
           flight.setFlightType(flightResult.getFlighttype());
           flight.setIsLayover("Direct Flight");
+          flight.setPrice(flightResult.getPrice());
           flights.add(flight);
         }
       }

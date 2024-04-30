@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 public class SetFlight {
 
   public FlightInfo set(
-    FlightCapacity flightResult,
-    FlightInfo flight)
-  {
+      FlightCapacity flightResult,
+      FlightInfo flight) {
     flight.setArriveAirport(flightResult.getArriveairport());
     flight.setDepartAirport(flightResult.getDepartairport());
     flight.setDepartDatetime(flightResult.getDepartdatetime());
     flight.setArriveDatetime(flightResult.getArrivedatetime());
     flight.setFlightNumber(flightResult.getFlightnumber());
     flight.setFlightType(flightResult.getFlighttype());
+    flight.setPrice(flightResult.getPrice());
     return flight;
   }
 }

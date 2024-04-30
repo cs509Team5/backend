@@ -18,9 +18,11 @@ public class FlightInfoTest {
     String seatClass = "Economy";
     String flightType = "international";
     String isLayover = "Yes";
+    Double flightPrice = 90.00;
 
     FlightInfo flightInfo = new FlightInfo(
-      departDatetime, arriveDatetime, departAirport, arriveAirport, flightNumber, seatClass, flightType, isLayover);
+        departDatetime, arriveDatetime, departAirport, arriveAirport, flightNumber, seatClass, flightType, isLayover,
+        flightPrice);
 
     assertEquals(departDatetime, flightInfo.getDepartDatetime());
     assertEquals(arriveDatetime, flightInfo.getArriveDatetime());

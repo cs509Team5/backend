@@ -18,16 +18,16 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FlightCapacity {
-    @Id
-    Long id;
+  @Id
+  Long id;
 
-    Timestamp departdatetime;
-    Timestamp arrivedatetime;
-    String departairport;
-    String arriveairport;
-    String flightnumber;
-    String flighttype;
-    int firstclassnum;
-    int economyclassnum;
+  Timestamp departdatetime;
+  Timestamp arrivedatetime;
+  String departairport;
+  String arriveairport;
+  String flightnumber;
+  String flighttype;
+  int firstclassnum;
+  int economyclassnum;
+  Double price;
 }
-
