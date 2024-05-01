@@ -39,6 +39,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Setup Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
       # Alternative option - authentication via credentials json
       - id: "auth"
         uses: "google-github-actions/auth@v2.1.2"
